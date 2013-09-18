@@ -171,7 +171,7 @@ echo
 echo "Installing Ansible"
 sudo -E chroot $ebsimagedir add-apt-repository -y ppa:rquillo/ansible
 sudo -E chroot $ebsimagedir apt-get update
-sudo -E chroot $ebsimagedir export DEBIAN_FRONTEND=noninteractive ; apt-get install ansible
+sudo -E chroot $ebsimagedir apt-get install -y ansible
 
 echo
 echo "Copy over NetflixOSS-Ansible playbooks"
