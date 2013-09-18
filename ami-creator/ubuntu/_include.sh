@@ -17,10 +17,21 @@
 # Code adapted from: alestic-git
 
 # Brand used in AMI name and description
-brand="brand"
+brand="Ansible"
+export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/
+export EC2_HOME=/root/ec2-api-tools-1.6.8.0/
+export EC2_ACCESS_KEY="AKIAI7ALWJR5VQUFDNXQ"
+export EC2_SECRET_KEY="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"
+export EC2_URL=https://ec2.amazonaws.com
+export S3_URL=https://s3.amazonaws.com:443
+export AWS_ACCESS_KEY_ID=${EC2_ACCESS_KEY}
+export AWS_SECRET_ACCESS_KEY=${EC2_SECRET_KEY}
+export AWS_ACCESS_KEY=${EC2_ACCESS_KEY}
+export AWS_SECRET_KEY=${EC2_SECRET_KEY}
+export LC_ALL="C"
 
 # Default size of AMI EBS volume
-size=16 # GB
+size=8 # GB
 
 # Ubuntu release
 codename=precise

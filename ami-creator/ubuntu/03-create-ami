@@ -24,7 +24,8 @@
 
 echo "-- Create AMI --"
 echo "Creating AMI: $name"
-read -e -p "Value for Name Tag for this AMI: " -i "${brand^}" tag_name
+#read -e -p "Value for Name Tag for this AMI: " -i "${brand^}" tag_name
+tag_name="${brand^}" 
 echo "Will tag with: $tag_name"
 echo
 
