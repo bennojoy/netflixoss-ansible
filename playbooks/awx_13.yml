@@ -1,0 +1,21 @@
+---
+# Base playbook for ubuntu
+- name: Base
+  user: ubuntu
+  sudo: True
+  tags: base
+  hosts: all
+  tasks:
+    - name: copy the awx 13 tarball
+      get_url: url=http://ansibleworks.com/releases/awx/setup/awx-setup-1.3.0.tar.gz dest=/opt
+
+    - name: untar the ball
+      shell: chdir=/opt tar -xvzf awx-setup-1.3.0.tar.gz
+
+    - name: create teh directory
+      file: path=/run/lock state=directory mode=0775
+
+    - name: install the tarball
+      shell: chdir=/opt/awx-setup-1.3.0 ./setup.sh
+
+
