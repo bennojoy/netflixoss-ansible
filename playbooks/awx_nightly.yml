@@ -1,0 +1,38 @@
+---
+# Base playbook for ubuntu
+- name: Base
+  user: ubuntu
+  sudo: True
+  tags: base
+  connection: local
+  hosts: all
+  tasks:
+    - name: copy the awx 13 tarball
+      get_url: url=http://50.116.42.103/awx_nightlies_RTYUIOPOIUYTYU/setup/awx-setup-latest.tar.gz dest=/opt
+
+    - name: untar the ball
+      shell: chdir=/opt tar -xvzf awx-setup-*
+
+    - name: create teh directory
+      file: path=/run/lock state=directory mode=0775
+
+    - name: start rysyslog
+      service: name=rsyslog state=started
+      ignore_errors: true
+
+    - name: install the tarball
+      shell: chdir=/opt/ cd ./awx-setup-20*; ./setup.sh -e "aw_repo_url=http://50.116.42.103/awx_nightlies_RTYUIOPOIUYTYU"
+
+    - name: servie stop
+      service: name={{ item }} state=stopped
+      with_items:
+       - postgresql
+       - apache2
+       - supervisor
+       - rsyslog
+
+    - name: kill procs
+      shell: killall -9 awx-manage
+      ignore_errors: yes
+
+
